@@ -13,3 +13,30 @@ public:
 };
 
 #include <gtest/gtest.h>
+
+TEST(TerminalTest, Login)
+{
+    Terminal* term = new Terminal;
+    term->Connect();
+
+    term->Login("test_id", "test_password");
+
+    ASSERT_TRUE(term->IsLogin()) << "로그인 하였을 때";
+
+    term->Disconnect();
+    delete term;
+}
+
+TEST(TerminalTest, Logout)
+{
+    Terminal* term = new Terminal;
+    term->Connect();
+
+    term->Login("test_id", "test_password");
+    term->Logout();
+
+    ASSERT_FALSE(term->IsLogin()) << "로그아웃 하였을 때";
+
+    term->Disconnect();
+    delete term;
+}
