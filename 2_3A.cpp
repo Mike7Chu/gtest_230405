@@ -52,8 +52,22 @@ TEST(CalcTest, Plus)
 //   -     Act: 테스트 대상 코드에 작용(함수, 메소드)을 가합니다.
 //   -  Assert: 기대하는 바를 단언합니다.
 
-TEST(CalcTest, Plus)
+// 3. 테스트케이스 품질
+//  1) 가독성
+//   - 테스트케이스가 실패하였을 때, 실패의 원인이 오류 메세지를 통해
+//     드러나는가
+//   - 테스트케이스의 이름을 통해서, 테스트의 시나리오를 알 수 있어야 합니다.
+//    ex) PressPlus_TwoPlusTwo_DisplaysFour
+#define SPEC(msg) printf("SPEC: " msg "\n")
+
+//  2) 유지보수성
+//  3) 신뢰성
+// TEST(CalcTest, Plus)
+
+TEST(CalcTest, PressPlus_TwoPlusTwo_DisplaysFour)
 {
+    SPEC("2 더하기 2를 하였을 때, 결과가 4가 제대로 나오는지 검증한다.");
+
     // Arrange
     Calc* calc = new Calc;
 
