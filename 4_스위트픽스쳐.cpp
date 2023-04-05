@@ -1,10 +1,12 @@
 // 4_스위트픽스쳐.cpp
 #include <string>
+#include <unistd.h>
 
 class Terminal {
 public:
-    void Connect() { }
-    void Disconnect() { }
+    // 가정: Connect / Disconnect가 느리다고 가정합니다.
+    void Connect() { sleep(2); }
+    void Disconnect() { sleep(2); }
 
     void Login(const std::string& id, const std::string& password) { }
     void Logout() { }
@@ -14,9 +16,44 @@ public:
 
 #include <gtest/gtest.h>
 
+// 문제점: SetUp/ TearDown이 느려서(픽스쳐의 설치와 해체가 느려서)
+//    테스트케이스가 추가될 때마다 전체적인 테스트의 수행 시간이 늘어나는 문제가
+//    발생합니다.
+//  => Slow Test 문제
+//   1) 테스트가 너무 느려서, 테스트를 수행하는 개발자의 생산성을 떨어뜨립니다.
+//   2) 테스트가 너무 느려서, 아무도 코드가 변경되어도 테스트를 수행하지 않습니다.
+
+//  픽스쳐의 설치/해체로 인한 느린 테스트의 문제를 해결하는 방법
+//  => 스위트 픽스쳐
+
+// --- 스위트 픽스쳐 SetUp
+// TerminalTest* ts = new TerminalTest;
+// ts->SetUp();
+// ts->TestBody();
+// ts->TearDown();
+// delete ts;
+
+// TerminalTest* ts = new TerminalTest;
+// ts->SetUp();
+// ts->TestBody();
+// ts->TearDown();
+// delete ts;
+// --- 스위트 픽스쳐 TearDown
+#if 0
 class TerminalTest : public testing::Test {
 protected:
     Terminal* term = nullptr;
+
+    // Suite Fixture
+    static void SetUpTestSuite()
+    {
+        std::cout << "SetUpTestSuite" << std::endl;
+    }
+
+    static void TearDownTestSuite()
+    {
+        std::cout << "TearDownTestSuite" << std::endl;
+    }
 
     void SetUp() override
     {
@@ -30,6 +67,37 @@ protected:
         delete term;
     }
 };
+#endif
+
+class TerminalTest : public testing::Test {
+protected:
+    static Terminal* term;
+
+    // Suite Fixture
+    static void SetUpTestSuite()
+    {
+        std::cout << "SetUpTestSuite" << std::endl;
+        term = new Terminal;
+        term->Connect();
+    }
+
+    static void TearDownTestSuite()
+    {
+        std::cout << "TearDownTestSuite" << std::endl;
+        term->Disconnect();
+        delete term;
+    }
+
+    void SetUp() override
+    {
+    }
+
+    void TearDown() override
+    {
+    }
+};
+
+Terminal* TerminalTest::term = nullptr;
 
 TEST_F(TerminalTest, Login)
 {
@@ -43,6 +111,11 @@ TEST_F(TerminalTest, Logout)
     term->Logout();
 
     ASSERT_FALSE(term->IsLogin()) << "로그아웃 하였을 때";
+}
+
+// 새로운 테스트케이스가 추가될 때마다, 느려집니다.
+TEST_F(TerminalTest, Sample)
+{
 }
 
 #if 0
