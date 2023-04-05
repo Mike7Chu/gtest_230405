@@ -2,7 +2,7 @@
 class Calc {
 public:
     // 요구 사항 변경
-    // Calc(int n) { }
+    Calc(int n) { }
 
     double Display() { return 0; }
 
@@ -25,6 +25,11 @@ public:
 
 // 명시적인 테스트 스위트 클래스
 class CalcTest : public testing::Test {
+protected:
+    // 구글 테스트에서 테스트 유틸리티 메소드를 제공할 때,
+    // protected로 만들어야 하는 구조적인 이유를 이해하는 것이 중요합니다.
+
+    Calc* CreateCalc() { return new Calc(0); }
 };
 // - TEST_F
 // class CalcTest_PressPlus_TwoPlusTwo_DisplaysFour_Test : public CalcTest
@@ -35,7 +40,7 @@ TEST_F(CalcTest, PressPlus_TwoPlusTwo_DisplaysFour)
     SPEC("2 더하기 2를 하였을 때, 결과가 4가 제대로 나오는지 검증한다.");
 
     // Arrange
-    Calc* calc = new Calc;
+    Calc* calc = CreateCalc();
 
     // Act
     calc->Enter(2);
@@ -50,7 +55,7 @@ TEST_F(CalcTest, PressPlus_TwoPlusTwo_DisplaysFour)
 TEST_F(CalcTest, PressMinus)
 {
     // Arrange
-    Calc* calc = new Calc;
+    Calc* calc = CreateCalc();
 
     // Act
     calc->Enter(4);
