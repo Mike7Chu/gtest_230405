@@ -2,7 +2,7 @@
 class Calc {
 public:
     // 요구 사항 변경
-    Calc(int n) { }
+    // Calc(int n) { }
 
     double Display() { return 0; }
 
@@ -29,7 +29,7 @@ protected:
     // 구글 테스트에서 테스트 유틸리티 메소드를 제공할 때,
     // protected로 만들어야 하는 구조적인 이유를 이해하는 것이 중요합니다.
 
-    Calc* CreateCalc() { return new Calc(0); }
+    Calc* CreateCalc() { return new Calc; }
 };
 // - TEST_F
 // class CalcTest_PressPlus_TwoPlusTwo_DisplaysFour_Test : public CalcTest
@@ -85,7 +85,7 @@ TEST_F(CalcTest, PressMinus)
 // TEST_F(SampleTest, foo)
 // class SampleTest_foo_Test : public SampleTest {};
 
-// TEST_f(SampleTest, goo)
+// TEST_F(SampleTest, goo)
 // class SampleTest_goo_Test : public SampleTest {};
 
 //                 testing::Test
