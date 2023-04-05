@@ -48,9 +48,9 @@ TEST(CalcTest, Plus)
 #endif
 
 //  3) 3A
-//   - Arrange: 테스트 대상 코드(SUT)를 초기화하고, 필요한 경우 설정하고 준비합니다.
-//   -     Act: 테스트 대상 코드에 작용(함수, 메소드)을 가합니다.
-//   -  Assert: 기대하는 바를 단언합니다.
+//   - Arrange(Given): 테스트 대상 코드(SUT)를 초기화하고, 필요한 경우 설정하고 준비합니다.
+//   -     Act(When): 테스트 대상 코드에 작용(함수, 메소드)을 가합니다.
+//   -  Assert(Then): 기대하는 바를 단언합니다.
 
 // 3. 테스트케이스 품질
 //  1) 가독성
@@ -66,6 +66,15 @@ TEST(CalcTest, Plus)
 //    "테스트 코드 안에서 제어 구문의 사용을 최소화해야 합니다."
 
 //  3) 신뢰성
+
+// 4. BDD(Behavior Driven Developmern, 행위 주도 개발)
+//  1) 가독성 => 용어를 좀 더 문장에 가깝게 사용하는 것을 지향합니다.
+//  2) 행위 검증
+
+// 5. 단언문
+//   - 매크로 함수의 형태로 제공됩니다.
+//    ASSERT_EQ, NE, LT, GT, LE, GE, TRUE, FALSE
+
 // TEST(CalcTest, Plus)
 TEST(CalcTest, PressPlus_TwoPlusTwo_DisplaysFour)
 {
