@@ -15,7 +15,6 @@
 
 // => 신선한 픽스쳐 전략
 // : 각 테스트케이스가 독립적으로 수행될 수 있도록 도움을 줍니다.
-
 class ImageProcessorTest : public testing::Test {
 protected:
     ImageProcessorTest()
