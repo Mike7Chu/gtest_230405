@@ -10,6 +10,7 @@ public:
 };
 
 #include <gtest/gtest.h>
+#define SPEC(msg) printf("SPEC: " msg "\n")
 
 TEST(CalcTest, PressPlus_TwoPlusTwo_DisplaysFour)
 {
