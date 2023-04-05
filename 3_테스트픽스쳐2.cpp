@@ -24,7 +24,8 @@ public:
 // class CalcTest_PressPlus_TwoPlusTwo_DisplaysFour_Test : public ::testing::Test
 
 // 명시적인 테스트 스위트 클래스
-class CalcTest : public testing::Test { };
+class CalcTest : public testing::Test {
+};
 // - TEST_F
 // class CalcTest_PressPlus_TwoPlusTwo_DisplaysFour_Test : public CalcTest
 
@@ -60,6 +61,7 @@ TEST_F(CalcTest, PressMinus)
     ASSERT_EQ(calc->Display(), 2) << "4-2 하였을 때";
 }
 
+// 1) 암묵적인 테스트 스위트 클래스
 // TEST(SampleTest, foo)
 // class SampleTest_foo_Test : public testing::Test {};
 
@@ -71,6 +73,15 @@ TEST_F(CalcTest, PressMinus)
 //      -------------------------------------
 //      |                                   |
 // SampleTest_foo_Test           SampleTest_goo_Test
+
+// 2) 명시적인 테스트 스위트 클래스
+// class SampleTest : public testing::Test {};
+
+// TEST_F(SampleTest, foo)
+// class SampleTest_foo_Test : public SampleTest {};
+
+// TEST_f(SampleTest, goo)
+// class SampleTest_goo_Test : public SampleTest {};
 
 //                 testing::Test
 //                       |
