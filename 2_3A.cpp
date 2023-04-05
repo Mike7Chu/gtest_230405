@@ -61,9 +61,12 @@ TEST(CalcTest, Plus)
 #define SPEC(msg) printf("SPEC: " msg "\n")
 
 //  2) 유지보수성
+//   - 테스트 코드도 유지보수의 대상입니다.
+//   - 테스트 코드의 유지보수의 비용이 최소화되어야 합니다.
+//    "테스트 코드 안에서 제어 구문의 사용을 최소화해야 합니다."
+
 //  3) 신뢰성
 // TEST(CalcTest, Plus)
-
 TEST(CalcTest, PressPlus_TwoPlusTwo_DisplaysFour)
 {
     SPEC("2 더하기 2를 하였을 때, 결과가 4가 제대로 나오는지 검증한다.");
@@ -77,9 +80,13 @@ TEST(CalcTest, PressPlus_TwoPlusTwo_DisplaysFour)
     calc->Enter(2);
 
     // Assert
+    ASSERT_EQ(calc->Display(), 4) << "2+2 하였을 때";
+
+#if 0
     if (calc->Display() == 4) {
         SUCCEED();
     } else {
         FAIL() << "2+2 하였을 때, 기대한 결과와 다릅니다.";
     }
+#endif
 }
