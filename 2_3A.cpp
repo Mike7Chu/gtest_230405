@@ -64,8 +64,12 @@ TEST(CalcTest, Plus)
 //   - 테스트 코드도 유지보수의 대상입니다.
 //   - 테스트 코드의 유지보수의 비용이 최소화되어야 합니다.
 //    "테스트 코드 안에서 제어 구문의 사용을 최소화해야 합니다."
+// > 테스트케이스 안에서 제어구문(조건문, 반복문, 예외 처리)의 발생을
+//   최소화해야 합니다.
 
 //  3) 신뢰성
+//   - 테스트의 결과를 신뢰할 수 있어야 합니다.
+//   => 각각의 테스트케이스를 독립적으로 구성해야 합니다.
 
 // 4. BDD(Behavior Driven Developmern, 행위 주도 개발)
 //  1) 가독성 => 용어를 좀 더 문장에 가깝게 사용하는 것을 지향합니다.
@@ -76,6 +80,7 @@ TEST(CalcTest, Plus)
 //    ASSERT_EQ, NE, LT, GT, LE, GE, TRUE, FALSE
 
 // TEST(CalcTest, Plus)
+#if 1
 TEST(CalcTest, PressPlus_TwoPlusTwo_DisplaysFour)
 {
     SPEC("2 더하기 2를 하였을 때, 결과가 4가 제대로 나오는지 검증한다.");
@@ -99,3 +104,4 @@ TEST(CalcTest, PressPlus_TwoPlusTwo_DisplaysFour)
     }
 #endif
 }
+#endif
