@@ -78,6 +78,10 @@ protected:
     static Terminal* term;
 
     // Suite Fixture
+    // 1.10 이전
+    // static void SetUpTestCase()
+
+    // 1.10 이후
     static void SetUpTestSuite()
     {
         std::cout << "SetUpTestSuite" << std::endl;
@@ -85,6 +89,10 @@ protected:
         term->Connect();
     }
 
+    // 1.10 이전
+    // static void TearDownTestCase()
+
+    // 1.10 이후
     static void TearDownTestSuite()
     {
         std::cout << "TearDownTestSuite" << std::endl;
