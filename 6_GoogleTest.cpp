@@ -149,12 +149,16 @@ TEST(SampleTest4, Sample1)
 //    알려야 합니다.
 // => TestSuite 이름 또는 TestCase의 이름이 DISABLED_ 접두를 가지면
 //    비활성화됩니다.
+// => 비활성화된 테스트를 구동하는 옵션이 존재합니다.
+//  $ ./a.out --gtest_also_run_disabled_tests
 
+// class SampleTest5_DISABLED_Sample1_Test : public testing::Test {};
 TEST(SampleTest5, DISABLED_Sample1)
 {
     FAIL() << "작성중입니다.";
 }
 
+// class DISABLED_SampleTest5_Sample2_Test : public testing::Test {};
 TEST(DISABLED_SampleTest5, Sample2)
 {
     FAIL() << "작성중입니다.";
