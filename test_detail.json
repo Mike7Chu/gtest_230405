@@ -3,7 +3,7 @@
   "failures": 1,
   "disabled": 0,
   "errors": 0,
-  "timestamp": "2023-04-06T02:17:01Z",
+  "timestamp": "2023-04-06T02:22:32Z",
   "time": "0s",
   "name": "AllTests",
   "testsuites": [
@@ -13,7 +13,7 @@
       "failures": 0,
       "disabled": 0,
       "errors": 0,
-      "timestamp": "2023-04-06T02:17:01Z",
+      "timestamp": "2023-04-06T02:22:32Z",
       "time": "0s",
       "testsuite": [
         {
@@ -22,7 +22,7 @@
           "line": 23,
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2023-04-06T02:17:01Z",
+          "timestamp": "2023-04-06T02:22:32Z",
           "time": "0s",
           "classname": "ImageTest"
         },
@@ -32,7 +32,7 @@
           "line": 26,
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2023-04-06T02:17:01Z",
+          "timestamp": "2023-04-06T02:22:32Z",
           "time": "0s",
           "classname": "ImageTest"
         },
@@ -42,7 +42,7 @@
           "line": 29,
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2023-04-06T02:17:01Z",
+          "timestamp": "2023-04-06T02:22:32Z",
           "time": "0s",
           "classname": "ImageTest"
         }
@@ -54,7 +54,7 @@
       "failures": 0,
       "disabled": 0,
       "errors": 0,
-      "timestamp": "2023-04-06T02:17:01Z",
+      "timestamp": "2023-04-06T02:22:32Z",
       "time": "0s",
       "testsuite": [
         {
@@ -63,7 +63,7 @@
           "line": 31,
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2023-04-06T02:17:01Z",
+          "timestamp": "2023-04-06T02:22:32Z",
           "time": "0s",
           "classname": "ImageProcessorTest"
         },
@@ -73,7 +73,7 @@
           "line": 32,
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2023-04-06T02:17:01Z",
+          "timestamp": "2023-04-06T02:22:32Z",
           "time": "0s",
           "classname": "ImageProcessorTest"
         },
@@ -83,7 +83,7 @@
           "line": 33,
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2023-04-06T02:17:01Z",
+          "timestamp": "2023-04-06T02:22:32Z",
           "time": "0s",
           "classname": "ImageProcessorTest"
         }
@@ -95,7 +95,7 @@
       "failures": 0,
       "disabled": 0,
       "errors": 0,
-      "timestamp": "2023-04-06T02:17:01Z",
+      "timestamp": "2023-04-06T02:22:32Z",
       "time": "0s",
       "testsuite": [
         {
@@ -104,7 +104,7 @@
           "line": 35,
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2023-04-06T02:17:01Z",
+          "timestamp": "2023-04-06T02:22:32Z",
           "time": "0s",
           "classname": "UserTest"
         },
@@ -114,7 +114,7 @@
           "line": 36,
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2023-04-06T02:17:01Z",
+          "timestamp": "2023-04-06T02:22:32Z",
           "time": "0s",
           "classname": "UserTest"
         },
@@ -124,7 +124,7 @@
           "line": 37,
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2023-04-06T02:17:01Z",
+          "timestamp": "2023-04-06T02:22:32Z",
           "time": "0s",
           "classname": "UserTest"
         }
@@ -136,7 +136,7 @@
       "failures": 0,
       "disabled": 0,
       "errors": 0,
-      "timestamp": "2023-04-06T02:17:01Z",
+      "timestamp": "2023-04-06T02:22:32Z",
       "time": "0s",
       "testsuite": [
         {
@@ -145,7 +145,7 @@
           "line": 51,
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2023-04-06T02:17:01Z",
+          "timestamp": "2023-04-06T02:22:32Z",
           "time": "0s",
           "classname": "SampleTest7"
         },
@@ -155,7 +155,7 @@
           "line": 56,
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2023-04-06T02:17:01Z",
+          "timestamp": "2023-04-06T02:22:32Z",
           "time": "0s",
           "classname": "SampleTest7"
         }
@@ -167,21 +167,24 @@
       "failures": 1,
       "disabled": 0,
       "errors": 0,
-      "timestamp": "2023-04-06T02:17:01Z",
+      "timestamp": "2023-04-06T02:22:32Z",
       "time": "0s",
       "testsuite": [
         {
           "name": "Sample1",
           "file": "6_GoogleTest2.cpp",
-          "line": 65,
+          "line": 79,
           "status": "RUN",
           "result": "COMPLETED",
-          "timestamp": "2023-04-06T02:17:01Z",
+          "timestamp": "2023-04-06T02:22:32Z",
           "time": "0s",
           "classname": "SampleTest8",
+          "spec": "이미지 프로세서에서 이미지를 리사이즈를 검증한다.",
+          "cpu": "1.5",
+          "mem": "30%",
           "failures": [
             {
-              "failure": "6_GoogleTest2.cpp:67\nFailed\n실패!",
+              "failure": "6_GoogleTest2.cpp:85\nFailed\n실패!",
               "type": ""
             }
           ]

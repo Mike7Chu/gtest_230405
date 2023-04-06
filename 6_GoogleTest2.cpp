@@ -66,7 +66,20 @@ TEST(SampleTest7, Sample2)
 // => Google Test 1.10 이후
 //  : JSON 형식으로 export 기능을 추가적으로 제공합니다.
 // $ ./a.out --gtest_output=json
+
+// 9. test_detail.xml / test_detail.json
+// > 추가적인 정보도 기록할 수 있습니다.
+#define SPEC(message)                    \
+    do {                                 \
+        printf("SPEC: " message "\n");   \
+        RecordProperty("spec", message); \
+    } while (0)
+
 TEST(SampleTest8, Sample1)
 {
+    SPEC("이미지 프로세서에서 이미지를 리사이즈를 검증한다.");
+    RecordProperty("cpu", "1.5");
+    RecordProperty("mem", "30%");
+
     FAIL() << "실패!";
 }
