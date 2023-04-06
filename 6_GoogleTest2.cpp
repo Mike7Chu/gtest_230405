@@ -40,6 +40,7 @@ TEST(UserTest, hoo) { }
 // > 단위 테스트는 어떤 순서로 몇번을 구동해도,
 //   동일한 결과가 수행되어야 합니다. => "신뢰성"
 // $ ./a.out --gtest_repeat=10 --gtest_shuffle --gtest_break_on_failure
+// > "변덕스러운 테스트"를 검출하기 위해 사용합니다.
 
 // --gtest_break_on_failure
 // > 테스트가 실패할 경우, 테스트를 더 이상 수행하지 않습니다. - "강제 종료"
