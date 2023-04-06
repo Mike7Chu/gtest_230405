@@ -54,8 +54,8 @@ public:
     int GetAge() const { return age; }
 };
 
-// User* GetUser() { return new User; }
-User* GetUser() { return nullptr; }
+User* GetUser() { return new User; }
+// User* GetUser() { return nullptr; }
 
 TEST(UserTest, Sample3)
 {
@@ -65,4 +65,22 @@ TEST(UserTest, Sample3)
 
     EXPECT_EQ(user->GetName(), "Tom");
     EXPECT_EQ(user->GetAge(), 42);
+}
+
+// 2. 문자열 비교 단언문
+// => const char* / char[] 형태의 문자열 비교에서 사용해야 합니다.
+// - EXPECT_STREQ / EXPECT_STRNE
+// - EXPECT_STRCASEEQ / EXPECT_STRCASENE : 대소문자 무시
+
+TEST(SampleTest2, Sample1)
+{
+    std::string s1 = "hello";
+    std::string s2 = "hello";
+    EXPECT_EQ(s1, s2);
+
+    char s3[] = "HELLO";
+    const char* s4 = "hello";
+    // EXPECT_EQ(s3, s4);
+    // EXPECT_STREQ(s3, s4);
+    EXPECT_STRCASEEQ(s3, s4);
 }
