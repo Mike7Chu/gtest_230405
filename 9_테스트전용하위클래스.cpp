@@ -16,6 +16,7 @@ public:
 // - 해결 방법: 테스트 전용 하위 클래스 패턴(Test Specific Subclass Pattern)
 //       의도: SUT가 클래스에 테스트를 위한 기능을 제공하고 있지 않을 때
 //            SUT의 하위 클래스를 만들어서 테스트되지 않은 요구사항을 검증할 수 있습니다.
+//       장점: 제품 코드를 변경하지 않고, 테스트를 수행할 수 있습니다.
 
 #if 0
 class TestUser : public User {
