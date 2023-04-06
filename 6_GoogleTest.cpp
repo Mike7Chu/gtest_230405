@@ -71,7 +71,6 @@ TEST(UserTest, Sample3)
 // => const char* / char[] 형태의 문자열 비교에서 사용해야 합니다.
 // - EXPECT_STREQ / EXPECT_STRNE
 // - EXPECT_STRCASEEQ / EXPECT_STRCASENE : 대소문자 무시
-
 TEST(SampleTest2, Sample1)
 {
     std::string s1 = "hello";
