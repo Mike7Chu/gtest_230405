@@ -78,6 +78,7 @@ TEST(ImageTest, DrawImage)
 
 // 사용자 정의 테스트 스위트 클래스를 통해
 // 메모리 누수를 검증하고자 합니다.
+#if 0
 class ImageTest : public testing::Test {
 protected:
     int alloc = 0;
@@ -94,6 +95,45 @@ protected:
         int diff = Image::alloc - alloc;
         EXPECT_EQ(diff, 0) << diff << " object(s) leaked";
 #endif
+    }
+};
+
+TEST_F(ImageTest, DrawImage)
+{
+    DrawImage("https://a.com/a.jpg");
+}
+#endif
+
+class LeakTest : public testing::Test {
+protected:
+    int alloc = 0;
+    void SetUp() override
+    {
+#ifdef GTEST_LEAK_TEST
+        alloc = Image::alloc;
+#endif
+    }
+
+    void TearDown() override
+    {
+#ifdef GTEST_LEAK_TEST
+        int diff = Image::alloc - alloc;
+        EXPECT_EQ(diff, 0) << diff << " object(s) leaked";
+#endif
+    }
+};
+//----
+
+// 주의 사항
+class ImageTest : public LeakTest {
+public:
+    void SetUp() override
+    {
+        LeakTest::SetUp(); // !!
+    }
+    void TearDown() override
+    {
+        LeakTest::TearDown(); // !!
     }
 };
 
