@@ -22,13 +22,33 @@ bool IsPrime(int value)
 //  기존) class PrimeTest : public testing::Test {};
 //  파라미터화 테스트) class PrimeTest : public testing::TestWithParam<int>
 class PrimeTest : public testing::TestWithParam<int> {
+public:
+    void SetUp() override
+    {
+        std::cout << "SetUp()" << std::endl;
+    }
+
+    void TearDown() override
+    {
+        std::cout << "TearDown()" << std::endl;
+    }
+
+    static void SetUpTestSuite()
+    {
+        std::cout << "SetUpTestSuite()" << std::endl;
+    }
+
+    static void TearDownTestSuite()
+    {
+        std::cout << "TearDownTestSuite()" << std::endl;
+    }
 };
 
 // 2. 데이터 셋을 정의해야 합니다.
 // => 매크로 형태로 제공됩니다.
 // INSTANTIATE_TEST_SUITE_P(데이터 셋 이름, 테스트 스위트 클래스, 데이터 셋)
 INSTANTIATE_TEST_SUITE_P(PrimeValues, PrimeTest,
-    testing::Values(2, 3, 5, 7, 11, 13, 17, 23, 29, 31));
+    testing::Values(2, 3, 5, 7, 11, 13, 17, 23, 29, 31, 34));
 
 // 3. 데이터를 활용하는 테스트 케이스를 만들면 됩니다.
 //  기존) TEST_F(PrimeTest, IsPrime)
@@ -37,3 +57,20 @@ TEST_P(PrimeTest, IsPrime)
 {
     EXPECT_TRUE(IsPrime(GetParam()));
 }
+
+//-------
+// Google Test 에서 테스트 케이스 만드는 방법 3가지
+// 1) TEST
+// => 명시적인 테스트 스위트 클래스가 필요하지 않을 때
+// TEST(SampleTest, foo) {}
+
+// 2) TEST_F
+// => 명시적인 테스트 스위트 클래스가 필요할 때
+// class SampleTest : public testing::Test {};
+// TEST_F(SampleTest, foo) {}
+
+// 3) TEST_P
+// class SampleTest : public testing::TestWithParam<T> {};
+// TEST_P(SampleTest, foo) {
+//    GetParam();
+// }
