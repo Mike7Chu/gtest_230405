@@ -14,6 +14,8 @@ bool IsPrime(int value)
 #include <gtest/gtest.h>
 // 파라미터화 테스트 패턴(Parameterized Test Pattern)
 // : xUnit Test Framework가 제공하는 기능입니다.
+//  => 파라미터화 테스트는 테스트의 복잡도를 높일 수 있다.
+//    "테스트의 유지보수성이 낮아질 수 있습니다."
 
 // 의도: 입력 데이터를 바꿔가며, 반복 검사하는 데이터 중심의 테스트에서
 //     코드 중복을 제거할 수 있습니다.
