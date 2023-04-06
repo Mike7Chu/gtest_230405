@@ -7,7 +7,9 @@ public:
 
     virtual void Start() // 가상 함수
     {
+        // ...
         std::cout << "Engine Start" << std::endl;
+        // ...
     }
 };
 
@@ -23,6 +25,8 @@ public:
     void Go()
     {
         // 내부 조건이 성립되면,
+        // ...
+
         engine->Start();
     }
 };
