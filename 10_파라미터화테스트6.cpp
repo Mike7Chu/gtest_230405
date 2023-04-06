@@ -17,3 +17,9 @@ TEST_P(SampleTest, Sample)
 {
     std::cout << GetParam() << std::endl;
 }
+
+//----
+// 1) testing::Values
+// 2) testing::ValuesIn
+// 3) testing::Combine
+// 4) testing::Range
