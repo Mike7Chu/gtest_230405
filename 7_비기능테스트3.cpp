@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 
+// $ g++ 7_비기능테스트3.cpp -lgtest -L. -I ./googletest/googletest/include/ -pthread -DGTEST_LEAK_TEST
+
 #ifdef GTEST_LEAK_TEST
 #define DECLARE_GTEST_LEAK_TEST()         \
     static int alloc;                     \
