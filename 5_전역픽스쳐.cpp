@@ -29,12 +29,19 @@ public:
 };
 
 // 2) 등록하는 방법 2가지
+// => 주의사항은 객체를 new로 생성해야 합니다.
+
+// MyTestEnvironment myTestEnv;
+
 //    1) main을 직접 정의한 경우
 int main(int argc, char** argv)
 {
     testing::InitGoogleTest(&argc, argv);
 
     testing::AddGlobalTestEnvironment(new MyTestEnvironment); // !!!
+    testing::AddGlobalTestEnvironment(new MyTestEnvironment); // !!!
+
+    // testing::AddGlobalTestEnvironment(&myTestEnv); - 오류!
 
     return RUN_ALL_TESTS();
 }
