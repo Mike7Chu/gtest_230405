@@ -8,6 +8,10 @@
 // > 와일드카드도 사용할 수 있습니다.
 // $ ./a.out --gtest_filter=ImageTest.*
 // $ ./a.out --gtest_filter=*.foo
+// $ ./a.out --gtest_filter=Image*.*
+
+// > 제외도 가능합니다.
+// $ ./a.out --gtest_filter=Image*.*:-*.goo
 
 // ImageTest.foo
 TEST(ImageTest, foo) { }
@@ -21,3 +25,7 @@ TEST(ImageTest, hoo) { }
 TEST(ImageProcessorTest, foo) { }
 TEST(ImageProcessorTest, goo) { }
 TEST(ImageProcessorTest, hoo) { }
+
+TEST(UserTest, foo) { }
+TEST(UserTest, goo) { }
+TEST(UserTest, hoo) { }
