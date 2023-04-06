@@ -104,7 +104,6 @@ TEST(SampleTest3, Sample1)
 // => EXPECT_THROW: 기대한 예외가 발생하는지 여부를 검증합니다.
 //    EXPECT_ANY_THROW: 예외 발생 여부를 검증합니다.
 //    EXPECT_NO_THROW: 예외가 발생하지 않음을 검증합니다.
-
 void OpenFile(const std::string filename)
 {
     if (filename.empty()) {
@@ -144,3 +143,32 @@ TEST(SampleTest4, Sample1)
         FAIL() << "기대한 예외가 다른 예외가 발생하였음.";
     }
 }
+
+// 5. 테스트 비활성화
+// => 테스트의 결과에 포함되지 않지만, 비활성화된 테스트가 존재한다는 사실을
+//    알려야 합니다.
+// => TestSuite 이름 또는 TestCase의 이름이 DISABLED_ 접두를 가지면
+//    비활성화됩니다.
+
+TEST(SampleTest5, DISABLED_Sample1)
+{
+    FAIL() << "작성중입니다.";
+}
+
+TEST(DISABLED_SampleTest5, Sample2)
+{
+    FAIL() << "작성중입니다.";
+}
+
+class DISABLED_ImageTest : public testing::Test { };
+TEST_F(DISABLED_ImageTest, BlurImage) { }
+TEST_F(DISABLED_ImageTest, ResizeImage) { }
+
+// - 작성 중인 테스트는 실패해야 합니다.
+// - 테스트를 비활성화하기 위해서, 주석처리하면, "잊혀진 테스트"가 됩니다.
+/*
+TEST(SampleTest5, Sample)
+{
+    FAIL() << "작성중입니다.";
+}
+*/
