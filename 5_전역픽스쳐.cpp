@@ -33,7 +33,8 @@ public:
 
 // MyTestEnvironment myTestEnv;
 
-//    1) main을 직접 정의한 경우
+//  1) main을 직접 정의한 경우
+#if 0
 int main(int argc, char** argv)
 {
     testing::InitGoogleTest(&argc, argv);
@@ -45,5 +46,8 @@ int main(int argc, char** argv)
 
     return RUN_ALL_TESTS();
 }
+#endif
 
-//    2) main을 정의하지 않는 경우
+//    2) main을 정의하지 않는 경우 - 전역 변수
+//     => 전역 변수가 main 함수 이전에 초기화되는 특성을 이용합니다.
+testing::Environment* myEnv = testing::AddGlobalTestEnvironment(new MyTestEnvironment);
