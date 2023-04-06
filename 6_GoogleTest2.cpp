@@ -57,3 +57,16 @@ TEST(SampleTest7, Sample2)
 {
     EXPECT_EQ(GetCount(), 2);
 }
+
+// 8. 테스트 결과 포맷터(Test Result Formatter)
+// => xUnit Test Framework
+//   테스트의 결과를 XML 형식으로 export 합니다.
+// $ ./a.out --gtest_output=xml
+
+// => Google Test 1.10 이후
+//  : JSON 형식으로 export 기능을 추가적으로 제공합니다.
+// $ ./a.out --gtest_output=json
+TEST(SampleTest8, Sample1)
+{
+    FAIL() << "실패!";
+}
