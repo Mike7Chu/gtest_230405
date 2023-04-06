@@ -35,3 +35,24 @@ TEST(ImageProcessorTest, hoo) { }
 TEST(UserTest, foo) { }
 TEST(UserTest, goo) { }
 TEST(UserTest, hoo) { }
+
+// 7. 테스트 무작위 / 반복
+// > 단위 테스트는 어떤 순서로 몇번을 구동해도,
+//   동일한 결과가 수행되어야 합니다. => "신뢰성"
+// $ ./a.out --gtest_repeat=10 --gtest_shuffle --gtest_break_on_failure
+
+// --gtest_break_on_failure
+// > 테스트가 실패할 경우, 테스트를 더 이상 수행하지 않습니다. - "강제 종료"
+
+int cnt = 0;
+int GetCount() { return ++cnt; }
+
+TEST(SampleTest7, Sample1)
+{
+    EXPECT_EQ(GetCount(), 1);
+}
+
+TEST(SampleTest7, Sample2)
+{
+    EXPECT_EQ(GetCount(), 2);
+}
