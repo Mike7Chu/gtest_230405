@@ -27,6 +27,13 @@ class PrimeTest : public testing::TestWithParam<int> {
 // 2. 데이터 셋을 정의해야 합니다.
 // => 매크로 형태로 제공됩니다.
 // INSTANTIATE_TEST_SUITE_P(데이터 셋 이름, 테스트 스위트 클래스, 데이터 셋)
-
 INSTANTIATE_TEST_SUITE_P(PrimeValues, PrimeTest,
     testing::Values(2, 3, 5, 7, 11, 13, 17, 23, 29, 31));
+
+// 3. 데이터를 활용하는 테스트 케이스를 만들면 됩니다.
+//  기존) TEST_F(PrimeTest, IsPrime)
+//  파라미터화 테스트) TEST_P(PrimeTest, IsPrime)
+TEST_P(PrimeTest, IsPrime)
+{
+    EXPECT_TRUE(IsPrime(GetParam()));
+}
