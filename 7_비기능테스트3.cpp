@@ -123,7 +123,6 @@ protected:
     }
 };
 //----
-
 // 주의 사항
 class ImageTest : public LeakTest {
 public:
