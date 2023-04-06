@@ -28,19 +28,32 @@ public:
     }
 };
 
+class MyTestEnvironment2 : public testing::Environment {
+public:
+    void SetUp() override
+    {
+        std::cout << "MyTestEnvironment2 SetUp()" << std::endl;
+    }
+
+    void TearDown() override
+    {
+        std::cout << "MyTestEnvironment2 TearDown()" << std::endl;
+    }
+};
+
 // 2) 등록하는 방법 2가지
 // => 주의사항은 객체를 new로 생성해야 합니다.
 
 // MyTestEnvironment myTestEnv;
 
 //  1) main을 직접 정의한 경우
-#if 0
+#if 1
 int main(int argc, char** argv)
 {
     testing::InitGoogleTest(&argc, argv);
 
     testing::AddGlobalTestEnvironment(new MyTestEnvironment); // !!!
-    testing::AddGlobalTestEnvironment(new MyTestEnvironment); // !!!
+    testing::AddGlobalTestEnvironment(new MyTestEnvironment2); // !!!
 
     // testing::AddGlobalTestEnvironment(&myTestEnv); - 오류!
 
@@ -48,6 +61,28 @@ int main(int argc, char** argv)
 }
 #endif
 
+#if 0
 //    2) main을 정의하지 않는 경우 - 전역 변수
 //     => 전역 변수가 main 함수 이전에 초기화되는 특성을 이용합니다.
+// test1.cpp
 testing::Environment* myEnv = testing::AddGlobalTestEnvironment(new MyTestEnvironment);
+
+// test2.cpp
+testing::Environment* myEnv2 = testing::AddGlobalTestEnvironment(new MyTestEnvironment2);
+
+// C++ 표준에서는 각 파일의 전역 객체의 초기화/파괴의 순서가 정의되어 있지 않습니다.
+
+#endif
+
+// 3. Google Test Framework - Fixture
+// 1) Test Fixture
+//  => 테스트케이스 단위에서의 SetUp / TearDown
+//  => xUnit Test Framework
+
+// 2) Suite Fixture
+//  => 테스트스위트 단위에서의 SetUp / TearDown
+//  => xUnit Test Framework
+
+// 3) Global Fixture
+//  => 프로그램 단위에서의 SetUp / TearDown
+//  => Google Test Framework
