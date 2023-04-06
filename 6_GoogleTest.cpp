@@ -112,13 +112,20 @@ void OpenFile(const std::string filename)
         // throw 1;
     }
 
+    if (filename == ".") {
+        throw std::bad_alloc();
+    }
+
     // ...
 }
 
 TEST(SampleTest4, Sample2)
 {
     std::string invalidFilename = "";
+    std::string directory = ".";
+
     EXPECT_THROW(OpenFile(invalidFilename), std::invalid_argument);
+    EXPECT_THROW(OpenFile(directory), std::bad_alloc);
     // EXPECT_ANY_THROW(OpenFile(invalidFilename));
     // EXPECT_NO_THROW(OpenFile(invalidFilename));
 }
