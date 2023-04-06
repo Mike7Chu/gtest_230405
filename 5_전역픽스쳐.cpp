@@ -7,6 +7,10 @@
 
 // => 프로그램의 시작/종료에서 픽스쳐를 설치하고, 해체하는 기능을
 //    제공할 수 있습니다.
+TEST(SampleTest, First) { }
+TEST(SampleTest, Second) { }
+
+TEST(ImageProcessorTest, ResizeImage) { }
 
 // 2. 전역 픽스쳐 설치/해체 방법
 // 1) testing::Environment를 상속해서
