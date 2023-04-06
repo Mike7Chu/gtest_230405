@@ -24,6 +24,10 @@ public:
 
     // * 테스트 코드에서 메모리 검증을 위해서는 아래 코드가
     //   제품 코드에 미리 정의되어 있어야 합니다.
+    // >  조건부 컴파일을 통해, 테스트 코드에서만 빌드되도록
+    //    제어하는 것이 좋습니다.
+    // $ g++ 7_비기능테스트2.cpp -lgtest -L. -I ./googletest/googletest/include/ -pthread -DGTEST_LEAK_TEST
+#ifdef GTEST_LEAK_TEST
     static int alloc;
 
     void* operator new(size_t size)
@@ -40,8 +44,12 @@ public:
         free(p);
         --alloc;
     }
+#endif
 };
+
+#ifdef GTEST_LEAK_TEST
 int Image::alloc = 0;
+#endif
 
 void DrawImage(const std::string& url)
 {
@@ -76,13 +84,17 @@ protected:
     int alloc = 0;
     void SetUp() override
     {
+#ifdef GTEST_LEAK_TEST
         alloc = Image::alloc;
+#endif
     }
 
     void TearDown() override
     {
+#ifdef GTEST_LEAK_TEST
         int diff = Image::alloc - alloc;
         EXPECT_EQ(diff, 0) << diff << " object(s) leaked";
+#endif
     }
 };
 
