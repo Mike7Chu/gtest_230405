@@ -24,6 +24,7 @@ public:
     {
         std::cout << __func__ << std::endl;
     }
+
     void OnTestProgramEnd(const testing::UnitTest& unit_test) override
     {
         std::cout << __func__ << std::endl;
@@ -33,6 +34,7 @@ public:
     {
         std::cout << __func__ << std::endl;
     }
+
     void OnTestSuiteEnd(const testing::TestSuite& test_case) override
     {
         std::cout << __func__ << std::endl;
@@ -60,6 +62,9 @@ int main(int argc, char** argv)
 
     testing::TestEventListeners& listeners = testing::UnitTest::GetInstance()->listeners();
     listeners.Append(new MyTestEventListener);
+
+    // Google Test의 기본 프린터를 제거할 수 있습니다.
+    delete listeners.Release(listeners.default_result_printer());
 
     return RUN_ALL_TESTS();
 }
