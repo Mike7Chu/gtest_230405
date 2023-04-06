@@ -71,6 +71,7 @@ testing::Environment* myEnv = testing::AddGlobalTestEnvironment(new MyTestEnviro
 testing::Environment* myEnv2 = testing::AddGlobalTestEnvironment(new MyTestEnvironment2);
 
 // C++ 표준에서는 각 파일의 전역 객체의 초기화/파괴의 순서가 정의되어 있지 않습니다.
+// => 미정의 동작
 
 #endif
 

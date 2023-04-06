@@ -69,6 +69,8 @@ TEST(SampleTest7, Sample2)
 
 // 9. test_detail.xml / test_detail.json
 // > 추가적인 정보도 기록할 수 있습니다.
+//  - RecordProperty(key, value)
+
 #define SPEC(message)                    \
     do {                                 \
         printf("SPEC: " message "\n");   \

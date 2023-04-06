@@ -2,6 +2,9 @@
 
 // xUnit Test Framework
 // 1) Fixture
+// - Test Fixture
+// - Test Suite Fixture
+
 // 2) Assertion
 // 3) Google Test 옵션
 
@@ -79,9 +82,10 @@ TEST(SampleTest2, Sample1)
 
     char s3[] = "HELLO";
     const char* s4 = "hello";
-    // EXPECT_EQ(s3, s4);
-    // EXPECT_STREQ(s3, s4);
-    EXPECT_STRCASEEQ(s3, s4);
+    // EXPECT_EQ(s3, s4); // 문자열의 주소를 비교하기 때문에, 내용이 동일해도 실패합니다.
+
+    // EXPECT_STREQ(s3, s4);  // 대소문자 비교
+    EXPECT_STRCASEEQ(s3, s4); // 대소문자 무시 비교
 }
 
 // 3. 부동소수점 비교 단언문
@@ -95,7 +99,7 @@ TEST(SampleTest3, Sample1)
     double a = 0.7;
     double b = 0.1 * 7;
 
-    // EXPECT_EQ(a, b);
+    // EXPECT_EQ(a, b); // a == b
     EXPECT_DOUBLE_EQ(a, b);
     EXPECT_NEAR(a, b, 0.00000001); // !!
 }
