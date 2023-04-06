@@ -7,7 +7,7 @@
 
 #include <gtest/gtest.h>
 
-int foo() { return 420; }
+int foo() { return 42; }
 int goo() { return 100; }
 
 // 1. ASSERT_
@@ -42,4 +42,27 @@ TEST(SampleTest, Sample2)
     EXPECT_EQ(100, goo());
     EXPECT_EQ(42, foo());
     EXPECT_EQ(100, goo());
+}
+
+//-----
+class User {
+    std::string name = "Tom";
+    int age = 42;
+
+public:
+    std::string GetName() const { return name; }
+    int GetAge() const { return age; }
+};
+
+// User* GetUser() { return new User; }
+User* GetUser() { return nullptr; }
+
+TEST(UserTest, Sample3)
+{
+    User* user = GetUser();
+
+    ASSERT_NE(user, nullptr); // 사전 조건 단언문
+
+    EXPECT_EQ(user->GetName(), "Tom");
+    EXPECT_EQ(user->GetAge(), 42);
 }
