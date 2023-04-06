@@ -48,8 +48,8 @@ void DrawImage(const std::string& url)
     Image* image = new Image(url);
     image->Draw();
 
-    // new Image(url);
-    // new Image(url);
+    new Image(url);
+    new Image(url);
 
     // delete image;
 }
@@ -59,10 +59,34 @@ void DrawImage(const std::string& url)
 
 // DrawImage를 수행할 때, Image 객체의 메모리 해지가
 // 제대로 되는지 여부를 검증하고 싶다.
+#if 0
 TEST(ImageTest, DrawImage)
 {
     int alloc = Image::alloc;
     DrawImage("https://a.com/a.jpg");
     int diff = Image::alloc - alloc;
     EXPECT_EQ(diff, 0) << diff << " object(s) leaked";
+}
+#endif
+
+// 사용자 정의 테스트 스위트 클래스를 통해
+// 메모리 누수를 검증하고자 합니다.
+class ImageTest : public testing::Test {
+protected:
+    int alloc = 0;
+    void SetUp() override
+    {
+        alloc = Image::alloc;
+    }
+
+    void TearDown() override
+    {
+        int diff = Image::alloc - alloc;
+        EXPECT_EQ(diff, 0) << diff << " object(s) leaked";
+    }
+};
+
+TEST_F(ImageTest, DrawImage)
+{
+    DrawImage("https://a.com/a.jpg");
 }
