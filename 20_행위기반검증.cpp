@@ -58,7 +58,6 @@ void UsePerson2(Person* p)
     p->Go(100, 20);
     p->Go(100, 20);
     p->Go(100, 20);
-    p->Go(100, 20);
 }
 
 TEST(PersonTest, Sample2)
@@ -72,4 +71,47 @@ TEST(PersonTest, Sample2)
     EXPECT_CALL(mock, Go).Times(Between(1, 3));
 
     UsePerson2(&mock);
+}
+
+// 3. 함수 호출 인자
+// => 인자 매칭에 따라서 함수 호출 횟수가 다릅니다.
+void UsePerson3(Person* p)
+{
+    p->Go(10, -100);
+    p->Go(11, -210);
+    p->Go(12, 1000);
+}
+
+// Matcher
+using testing::_; // *
+using testing::Eq; // ==
+using testing::Ge; // >=
+using testing::Gt; // >
+using testing::Le; // <=
+using testing::Lt; // <
+using testing::Ne; // !=
+
+using testing::AllOf; // &&
+using testing::AnyOf; // ||
+
+using testing::Matcher;
+
+TEST(PersonTest, Sample3)
+{
+    MockPerson mock;
+
+    // EXPECT_CALL(mock, Go(10, _)).Times(3);
+
+    // 첫번째 인자: >= 10
+    // 두번째 인자: < 301
+    // EXPECT_CALL(mock, Go(Ge(10), Lt(301))).Times(3);
+
+    // 첫번째 인자: arg1 >= 10 && arg1 < 20
+    Matcher<int> arg1 = AllOf(Ge(10), Lt(20));
+
+    // 두번째 인자: arg2 > 300 || arg2 < 0
+    Matcher<int> arg2 = AnyOf(Gt(300), Lt(0));
+    EXPECT_CALL(mock, Go(arg1, arg2)).Times(3);
+
+    UsePerson3(&mock);
 }
