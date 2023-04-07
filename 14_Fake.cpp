@@ -107,3 +107,41 @@ TEST(UserRepositoryTest, Save)
     // User fail("Tom", 42);
     // EXPECT_EQ(expected, fail);
 }
+
+#include <gmock/gmock.h>
+
+class MockDatabase : public IDatabase {
+    std::map<std::string, User*> data;
+
+public:
+    // void SaveUser(const std::string& name, User* user) override
+    MOCK_METHOD(void, SaveUser, (const std::string& name, User* user), (override));
+    // User* LoadUser(const std::string& name) override
+    MOCK_METHOD(User*, LoadUser, (const std::string& name), (override));
+};
+
+using testing::NiceMock;
+TEST(UserRepositoryTest2, Save)
+{
+    NiceMock<MockDatabase> fake;
+    UserRepository repo(&fake);
+    std::string testName = "test_name";
+    int testAge = 42;
+    User expected(testName, testAge);
+
+    std::map<std::string, User*> data;
+    ON_CALL(fake, SaveUser)
+        .WillByDefault([&data](const std::string& name, User* user) {
+            data[name] = user;
+        });
+    ON_CALL(fake, LoadUser)
+        .WillByDefault([&data](const std::string& name) {
+            return data[name];
+        });
+
+    repo.Save(&expected);
+    User* actual = repo.Load(testName);
+
+    ASSERT_NE(actual, nullptr);
+    EXPECT_EQ(expected, *actual);
+}
