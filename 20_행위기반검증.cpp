@@ -39,7 +39,34 @@ TEST(PersonTest, Sample1)
     // EXPECT_CALL(mock, Go);
 
     // Go(100, 20) 호출 여부를 판단합니다.
-    EXPECT_CALL(mock, Go(100, 20));
+    EXPECT_CALL(mock, Go(100, 2022));
 
     UsePerson1(&mock);
+}
+
+// 2. 함수 호출 횟수
+//  EXPECT_CALL(mock, Go)            => 1번
+//  EXPECT_CALL(mock, Go).Times(N)   => N번
+
+//  Cardnality
+using testing::AtLeast; // N번 이상
+using testing::AtMost; // N번 이하
+using testing::Between; // 범위
+
+void UsePerson2(Person* p)
+{
+    p->Go(100, 20);
+    p->Go(100, 20);
+    p->Go(100, 20);
+}
+
+TEST(PersonTest, Sample2)
+{
+    MockPerson mock;
+
+    // Go가 1번 호출되는지 여부를 검증합니다.
+    // EXPECT_CALL(mock, Go).Times(3);
+    EXPECT_CALL(mock, Go).Times(AtLeast(2));
+
+    UsePerson2(&mock);
 }
