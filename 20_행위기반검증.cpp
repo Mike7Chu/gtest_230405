@@ -115,3 +115,34 @@ TEST(PersonTest, Sample3)
 
     UsePerson3(&mock);
 }
+
+void UsePerson4(Person* p)
+{
+    p->Print({ 10, 20, 30 });
+}
+
+// 순서가 중요합니다.
+using testing::ElementsAre;
+using testing::ElementsAreArray;
+
+// 순서와 상관없습니다.
+using testing::UnorderedElementsAre;
+using testing::UnorderedElementsAreArray;
+
+TEST(PersonTest, Sample4)
+{
+    MockPerson mock;
+
+    std::vector<int> v = { 10, 20, 30 };
+    // EXPECT_CALL(mock, Print(v));
+
+    // 0: 10이상,
+    // 1: 10보다 크다.
+    // 2: 100보다 작다.
+    EXPECT_CALL(mock, Print(ElementsAre(Ge(10), Gt(10), Lt(100))));
+
+    Matcher<int> args[] = { Ge(10), Gt(10), Lt(100) };
+    // EXPECT_CALL(mock, Print(ElementsAreArray(args)));
+
+    UsePerson4(&mock);
+}
