@@ -34,6 +34,9 @@ $ ar rcv libgtest.a gtest-all.o gtest_main.o
 
 ## Google Mock 설치 방법(Google Test 의존성)
 ```
+# gtest-all.cc
+$ g++ googletest/googletest/src/gtest-all.cc -c -I ./googletest/googletest/include/ -I ./googletest/googletest/
+
 # gmock-all.cc
 $ g++ googletest/googlemock/src/gmock-all.cc -c \
 -I ./googletest/googlemock/include/ \
@@ -46,6 +49,6 @@ $ g++ googletest/googlemock/src/gmock_main.cc -c \
 -I ./googletest/googletest/include/
 
 # libgtest.a
-$ ar rcv libgtest.a gmock-all.o gmock_main.o
+$ ar rcv libgtest.a gmock-all.o gmock_main.o gtest-all.o
 
 ```
