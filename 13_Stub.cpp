@@ -89,3 +89,22 @@ TEST(PlayerTest, Move)
 
     EXPECT_THROW(player.Move(10, 20), NetworkException);
 }
+
+#include <gmock/gmock.h>
+
+class MockConnection : public IConnection {
+public:
+    MOCK_METHOD(void, Move, (int x, int y), (override));
+};
+
+using testing::NiceMock;
+using testing::Throw;
+TEST(PlayerTest2, Move)
+{
+    NiceMock<MockConnection> conn;
+
+    ON_CALL(conn, Move).WillByDefault(Throw(NetworkException()));
+    Player player(&conn);
+
+    EXPECT_THROW(player.Move(10, 20), NetworkException);
+}
