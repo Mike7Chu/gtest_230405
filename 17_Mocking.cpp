@@ -15,6 +15,10 @@ public:
 
     virtual std::string GetTitle() const = 0;
     virtual int Go(const std::string& address) const noexcept = 0;
+
+    // 주의 사항
+    virtual std::pair<bool, int> GetPair() const = 0;
+    virtual bool CheckMap(std::map<int, double> a, bool b) const = 0;
 };
 
 // 1. Google Mock 헤더를 포함해야 합니다.
@@ -26,6 +30,10 @@ public:
 class MockMP3 : public MP3 {
 public:
     // MOCK_METHOD(반환타입, 이름, (인자정보, ...), (한정자, ...))
+    // - override: 생략이 가능합니다.
+    // -    const: 반드시 명시해야 합니다.
+    // - noexcept: 반드시 명시해야 합니다.
+
     // void Play() override
     MOCK_METHOD(void, Play, (), (override));
 
@@ -34,6 +42,13 @@ public:
 
     // std::string GetTitle() const override
     MOCK_METHOD(std::string, GetTitle, (), (const, override));
+
+    // int Go(const std::string& address) const noexcept override
+    MOCK_METHOD(int, Go, (const std::string& address), (const, noexcept, override));
+
+    // 주의 사항: 템플릿 인자가 2개 이상인 경우, 괄호가 필요합니다.
+    // std::pair<bool, int> GetPair() const override
+    MOCK_METHOD((std::pair<bool, int>), GetPair, (), (const, override));
 };
 
 TEST(MP3Test, Sample)
