@@ -58,6 +58,7 @@ void UsePerson2(Person* p)
     p->Go(100, 20);
     p->Go(100, 20);
     p->Go(100, 20);
+    p->Go(100, 20);
 }
 
 TEST(PersonTest, Sample2)
@@ -66,7 +67,9 @@ TEST(PersonTest, Sample2)
 
     // Go가 1번 호출되는지 여부를 검증합니다.
     // EXPECT_CALL(mock, Go).Times(3);
-    EXPECT_CALL(mock, Go).Times(AtLeast(2));
+    // EXPECT_CALL(mock, Go).Times(AtLeast(2));
+
+    EXPECT_CALL(mock, Go).Times(Between(1, 3));
 
     UsePerson2(&mock);
 }
