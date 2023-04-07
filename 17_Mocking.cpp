@@ -14,7 +14,7 @@ public:
     virtual void Stop(int n) = 0;
 
     virtual std::string GetTitle() const = 0;
-    virtual int Go(const std::string& address) const noexpect = 0;
+    virtual int Go(const std::string& address) const noexcept = 0;
 };
 
 // 1. Google Mock 헤더를 포함해야 합니다.
