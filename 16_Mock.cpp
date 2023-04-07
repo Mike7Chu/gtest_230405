@@ -64,3 +64,18 @@ public:
 //    - Mock Framework
 //    Java: jMock, EqsyMock, Mockito, Spock ..
 //     C++: Google Mock
+
+#include <gmock/gmock.h>
+
+// 1. 모의 객체 - Mocking
+class MockTarget : public DLoggerTarget {
+public:
+    // void Write(Level level, const std::string& message) override
+    // - MOCK_METHOD{인자개수}(함수이름, 함수타입)
+
+    MOCK_METHOD2(Write, void(Level level, const std::string& message));
+};
+
+TEST(DLoggerTest, Write)
+{
+}
