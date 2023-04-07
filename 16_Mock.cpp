@@ -78,4 +78,41 @@ public:
 
 TEST(DLoggerTest, Write)
 {
+    // Arrange
+    DLogger logger;
+    MockTarget t1, t2;
+    logger.AddTarget(&t1);
+    logger.AddTarget(&t2);
+    Level testLevel = INFO;
+    std::string testMessage = "test logging message";
+
+    // Assert
+    // EXPECT_CALL: 호출 여부 검증
+    EXPECT_CALL(t1, Write(testLevel, testMessage));
+    EXPECT_CALL(t2, Write(testLevel, testMessage));
+
+    // Act
+    logger.Write(testLevel, testMessage);
+
+    // 주의사항: 호출되기 전에, EXPECT_CALL을 통해 검증해야 합니다.
 }
+
+#if 0
+TEST(DLoggerTest, Write)
+{
+    // Arrange
+    DLogger logger;
+    SpyTarget t1, t2;
+    logger.AddTarget(&t1);
+    logger.AddTarget(&t2);
+    Level testLevel = INFO;
+    std::string testMessage = "test logging message";
+
+    // Act
+    logger.Write(testLevel, testMessage);
+
+    // Assert
+    EXPECT_TRUE(t1.IsReceived(testLevel, testMessage));
+    EXPECT_TRUE(t2.IsReceived(testLevel, testMessage));
+}
+#endif
