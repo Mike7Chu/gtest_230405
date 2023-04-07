@@ -74,3 +74,19 @@ TEST(DogTest, Sample2)
 
     Process2(&mock);
 }
+
+//---
+class OnClickListener {
+public:
+    virtual void OnClick() = 0;
+};
+
+class MockOnClickListener : public OnClickListener {
+public:
+    MOCK_METHOD(void, OnClick, (), (override));
+};
+
+TEST(SampleTest, foo)
+{
+    // ..
+}
