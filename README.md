@@ -31,3 +31,21 @@ $ g++ googletest/googletest/src/gtest_main.cc -c -I ./googletest/googletest/incl
 $ ar rcv libgtest.a gtest-all.o gtest_main.o
 
 ```
+
+## Google Mock 설치 방법(Google Test 의존성)
+```
+# gmock-all.cc
+$ g++ googletest/googlemock/src/gmock-all.cc -c \
+-I ./googletest/googlemock/include/ \
+-I ./googletest/googletest/include/ \
+-I ./googletest/googlemock/
+
+# gmock_main.cc
+$ g++ googletest/googlemock/src/gmock_main.cc -c \
+-I ./googletest/googlemock/include/ \
+-I ./googletest/googletest/include/
+
+# libgtest.a
+$ ar rcv libgtest.a gmock-all.o gmock_main.o
+
+```
