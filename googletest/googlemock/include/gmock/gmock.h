@@ -91,6 +91,6 @@ GTEST_API_ void InitGoogleMock(int* argc, wchar_t** argv);
 // there is no argc/argv.
 GTEST_API_ void InitGoogleMock();
 
-}  // namespace testing
+} // namespace testing
 
-#endif  // GOOGLEMOCK_INCLUDE_GMOCK_GMOCK_H_
+#endif // GOOGLEMOCK_INCLUDE_GMOCK_GMOCK_H_

@@ -70,7 +70,7 @@ public:
 // 1. 모의 객체 - Mocking
 class MockTarget : public DLoggerTarget {
 public:
-        // - MOCK_METHOD{인자개수}(함수이름, 함수타입)
+    // - MOCK_METHOD{인자개수}(함수이름, 함수타입)
 
     // 1.10 이전
     // MOCK_METHOD2(Write, void(Level level, const std::string& message));
