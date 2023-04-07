@@ -43,3 +43,31 @@ public:
 
 //-----
 #include <gtest/gtest.h>
+
+class StubClock : public Clock {
+    std::string result;
+
+public:
+    StubClock(const std::string& s)
+        : result(s)
+    {
+    }
+
+    std::string GetCurrentTime() override { return result; }
+};
+
+TEST(UserTest, Alarm)
+{
+    StubClock stub("00:00");
+    User user(&stub);
+
+    EXPECT_EQ(user.Alarm(), 42);
+}
+
+TEST(UserTest, Alarm)
+{
+    StubClock stub("10:00");
+    User user(&stub);
+
+    EXPECT_EQ(user.Alarm(), 100);
+}
