@@ -40,8 +40,38 @@ TEST(DogTest, Sample1)
 
     EXPECT_CALL(mock, First);
     EXPECT_CALL(mock, Second);
-    EXPECT_CALL(mock, Forth);
     EXPECT_CALL(mock, Third);
+    EXPECT_CALL(mock, Forth);
 
     Process(&mock);
+}
+
+void Process2(Dog* p)
+{
+    p->First();
+
+    p->Third();
+    p->Forth();
+
+    p->Second();
+}
+
+// 4. 함수 호출 순서
+//  - First -------> Second           : seq1
+//          |
+//          -------> Third -> Forth   : seq2
+using testing::Sequence;
+
+TEST(DogTest, Sample2)
+{
+    Sequence seq1, seq2;
+    MockDog mock;
+
+    EXPECT_CALL(mock, First).InSequence(seq1, seq2);
+    EXPECT_CALL(mock, Second).InSequence(seq1);
+
+    EXPECT_CALL(mock, Third).InSequence(seq2);
+    EXPECT_CALL(mock, Forth).InSequence(seq2);
+
+    Process2(&mock);
 }
