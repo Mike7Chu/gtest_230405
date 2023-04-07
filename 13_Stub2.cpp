@@ -64,7 +64,7 @@ TEST(UserTest, Alarm)
     EXPECT_EQ(user.Alarm(), 42);
 }
 
-TEST(UserTest, Alarm)
+TEST(UserTest, Alarm2)
 {
     StubClock stub("10:00");
     User user(&stub);
