@@ -34,4 +34,6 @@ TEST_P(CarTest, Sample)
               << ", " << std::get<1>(param)
               << ", " << std::get<2>(param)
               << std::endl;
+
+    FAIL();
 }

@@ -20,6 +20,7 @@ TEST_P(SampleTest, Sample1)
 }
 #endif
 
+#if 1
 // 2. 사용자 정의 타입
 class User {
     std::string name;
@@ -35,7 +36,7 @@ public:
     // 사용자 정의 타입을 출력하는 연산자 오버로딩 함수를 제공해야 합니다.
     friend std::ostream& operator<<(std::ostream& os, const User& user)
     {
-        return os << user.name << ", " << user.age;
+        return os << "(" << user.name << ", " << user.age << ")";
     }
 };
 
@@ -53,3 +54,4 @@ TEST_P(SampleTest, Sample1)
     const User& param = GetParam();
     FAIL();
 }
+#endif
