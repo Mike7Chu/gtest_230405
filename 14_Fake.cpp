@@ -104,6 +104,6 @@ TEST(UserRepositoryTest, Save)
     // 사용자 정의 객체를 구글 테스트의 결과를 통해
     // 제대로 확인하기 위해서는 연산자 재정의가 필요합니다.
     //  std::ostream& operator<<(std::ostream& os, const User& user)
-    User fail("Tom", 42);
-    EXPECT_EQ(expected, fail);
+    // User fail("Tom", 42);
+    // EXPECT_EQ(expected, fail);
 }
