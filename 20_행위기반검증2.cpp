@@ -61,7 +61,6 @@ void Process2(Dog* p)
 //          |
 //          -------> Third -> Forth   : seq2
 using testing::Sequence;
-
 TEST(DogTest, Sample2)
 {
     Sequence seq1, seq2;
