@@ -22,7 +22,7 @@ public:
 template <typename T>
 void foo(StackInterface<T>* p)
 {
-  // p->GetSize(); 
+    // p->GetSize();
 }
 
 TEST(StackTest, Sample)
