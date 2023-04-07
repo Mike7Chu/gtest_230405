@@ -34,6 +34,8 @@ void Process(Calc* p)
 // 2. MOCK_METHOD한 함수에 대한 결과를 제어할 수 있습니다.
 //   : ON_CALL(mock, Add(10, 20)).WillByDefault(...)
 //  - 함수/함수객체/람다표현식
+// 3. ON_CALL을 이용해서,
+//    Stub / Fake를 만들 수 있습니다.
 
 class MockCalc : public Calc {
 public:

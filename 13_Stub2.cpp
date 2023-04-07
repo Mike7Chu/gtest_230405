@@ -71,3 +71,21 @@ TEST(UserTest, Alarm2)
 
     EXPECT_EQ(user.Alarm(), 100);
 }
+
+#include <gmock/gmock.h>
+
+class MockClock : public Clock {
+public:
+    MOCK_METHOD(std::string, GetCurrentTime, (), (override));
+};
+
+using testing::NiceMock;
+using testing::Return;
+TEST(UserTest2, Alarm)
+{
+    NiceMock<MockClock> mock;
+    ON_CALL(mock, GetCurrentTime).WillByDefault(Return("00:00"));
+    User user(&mock);
+
+    EXPECT_EQ(user.Alarm(), 42);
+}
